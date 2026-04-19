@@ -52,7 +52,7 @@ export default function GalleriesPage() {
               settings.galleriesHeading.split('\n').map((line, i) => (
                 <span key={i}>
                   {line}
-                  {i < settings.galleriesHeading.split('\n').length - 1 && <br />}
+                  {settings.galleriesHeading && i < settings.galleriesHeading.split('\n').length - 1 && <br />}
                 </span>
               ))
             ) : (
