@@ -9,6 +9,7 @@ export default defineType({
     { name: 'home', title: 'Home' },
     { name: 'work', title: 'Work' },
     { name: 'about', title: 'About' },
+    { name: 'contact', title: 'Contact' },
     { name: 'seo', title: 'SEO / Meta' },
   ],
   fields: [
@@ -224,6 +225,31 @@ export default defineType({
       group: 'global',
       rows: 2,
       description: 'Shown on the contact page, e.g. "2025 — limited dates remaining"',
+    }),
+
+    /* ─────────────────────────────────────────────
+       CONTACT PAGE
+       ───────────────────────────────────────────── */
+    defineField({
+      name: 'contactEyebrow',
+      title: 'Contact — Eyebrow Label',
+      type: 'string',
+      group: 'contact',
+      placeholder: 'Get in Touch',
+    }),
+    defineField({
+      name: 'contactTitle',
+      title: 'Contact — Heading',
+      type: 'string',
+      group: 'contact',
+      description: 'Supports manual line breaks with Enter.',
+    }),
+    defineField({
+      name: 'contactSubtitle',
+      title: 'Contact — Subtitle',
+      type: 'text',
+      group: 'contact',
+      rows: 3,
     }),
 
     /* ─────────────────────────────────────────────

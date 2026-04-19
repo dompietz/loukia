@@ -45,13 +45,26 @@ export default function ContactPage() {
       <div className="container">
         {/* Header */}
         <header className="contact-page__header">
-          <p className="label">Get in Touch</p>
+          <p className="label">{settings?.contactEyebrow || 'Get in Touch'}</p>
           <h1 className="contact-page__title">
-            Begin your <br />inquiry.
+            {settings?.contactTitle ? (
+              settings.contactTitle.split('\n').map((line, i) => (
+                <span key={i}>
+                  {line}
+                  {i < settings.contactTitle!.split('\n').length - 1 && <br />}
+                </span>
+              ))
+            ) : (
+              <>Begin your <br />inquiry.</>
+            )}
           </h1>
           <p className="contact-page__subtitle">
-            I take on a very limited number of weddings each year. If your date is open,
-            I would love to hear from you.
+            {settings?.contactSubtitle || (
+              <>
+                I take on a very limited number of weddings each year. If your date is open,
+                I would love to hear from you.
+              </>
+            )}
           </p>
         </header>
 

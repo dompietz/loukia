@@ -40,6 +40,9 @@ export interface SiteSettings {
   aboutEyebrow?: string
   aboutHeading: string
   aboutBio: string
+  contactEyebrow?: string
+  contactTitle?: string
+  contactSubtitle?: string
   portraitImage: SanityImage
   instagramUrl?: string
   email?: string
