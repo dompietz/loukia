@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import CustomCursor from './components/CustomCursor'
 import HomePage from './pages/Home'
 import GalleriesPage from './pages/Galleries'
 import GalleryPage from './pages/Gallery'
@@ -23,6 +24,8 @@ function AppRoutes() {
   return (
     <>
       <ScrollToTop />
+      <CustomCursor />
+      <div className="film-grain" />
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -59,6 +62,16 @@ function AppRoutes() {
 }
 
 export default function App() {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() === 'd') {
+        document.body.classList.toggle('darkroom-mode')
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
   return (
     <BrowserRouter>
       <AppRoutes />
