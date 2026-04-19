@@ -58,14 +58,16 @@ export default function AboutPage() {
 
         <div className="about-split__content">
           <div>
-            <span className="label about-split__eyebrow">About the photographer</span>
+            <span className="label about-split__eyebrow">
+              {settings?.aboutEyebrow || 'About the photographer'}
+            </span>
             <h1 className="about-split__heading">
               {settings?.photographerName || 'Loukia Hadjiyianni'}
             </h1>
           </div>
 
           <div className="about-split__bio">
-            <h2 className="about-split__subheading" style={{ fontFamily: 'var(--font-serif)', marginBottom: '1.5rem', fontWeight: 300 }}>
+            <h2 className="about-split__subheading">
               {settings?.aboutHeading || 'Documenting light and emotion.'}
             </h2>
             <div style={{ whiteSpace: 'pre-line' }}>

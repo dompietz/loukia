@@ -37,6 +37,7 @@ export interface SiteSettings {
   galleriesSubtitle?: string
   galleriesGridTitle?: string
   momentsGridTitle?: string
+  aboutEyebrow?: string
   aboutHeading: string
   aboutBio: string
   portraitImage: SanityImage

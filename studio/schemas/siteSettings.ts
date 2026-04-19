@@ -165,6 +165,14 @@ export default defineType({
        ABOUT PAGE
        ───────────────────────────────────────────── */
     defineField({
+      name: 'aboutEyebrow',
+      title: 'About — Eyebrow Label',
+      type: 'string',
+      group: 'about',
+      description: 'Small text above the heading, e.g. "About the photographer".',
+      placeholder: 'About the photographer',
+    }),
+    defineField({
       name: 'aboutHeading',
       title: 'About — Heading',
       type: 'string',

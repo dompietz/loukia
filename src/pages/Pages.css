@@ -202,6 +202,15 @@
   gap: var(--space-4);
 }
 
+.about-split__subheading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 300;
+  line-height: 1.35;
+  color: var(--color-ink);
+  margin-bottom: var(--space-6);
+}
+
 .about-split__bio p {
   font-size: 1rem;
   line-height: 1.85;
