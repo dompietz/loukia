@@ -83,7 +83,7 @@ export default function ContactPage() {
                 id="contact-name"
                 name="name"
                 type="text"
-                placeholder="Emma & James Richardson"
+                placeholder="Emma & Tom"
                 required
                 autoComplete="name"
               />
@@ -107,7 +107,7 @@ export default function ContactPage() {
                 id="contact-date"
                 name="date"
                 type="text"
-                placeholder="September 2025"
+                placeholder="September 2026"
               />
             </div>
 
@@ -127,7 +127,7 @@ export default function ContactPage() {
                 id="contact-message"
                 name="message"
                 rows={5}
-                placeholder="We are planning an intimate ceremony for forty guests…"
+                placeholder="We are planning an intimate ceremony for fourty guests…"
               />
             </div>
 
@@ -167,7 +167,7 @@ export default function ContactPage() {
             <div className="contact-info__block">
               <span className="label contact-info__label">Availability</span>
               <p className="contact-info__value" style={{ whiteSpace: 'pre-line' }}>
-                {settings?.availability || '2025 — limited dates remaining\n2026 — now booking'}
+                {settings?.availability || '2026 — limited dates remaining\n2027 — now booking'}
               </p>
             </div>
 
