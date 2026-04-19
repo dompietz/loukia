@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Loading from '../components/Loading'
 import LazyImage from '../components/LazyImage'
 import { getAllGalleries, getSiteSettings } from '../lib/queries'
 import type { Gallery, SiteSettings } from '../types'
@@ -11,12 +12,14 @@ export default function GalleriesPage() {
   const [settings, setSettings] = useState<SiteSettings | null>(null)
   const [loading, setLoading] = useState(true)
 
+
   useEffect(() => {
     async function fetchData() {
       try {
         const [galleriesData, settingsData] = await Promise.all([
           getAllGalleries(),
-          getSiteSettings()
+          getSiteSettings(),
+          new Promise(resolve => setTimeout(resolve, 800))
         ])
         setGalleries(galleriesData)
         setSettings(settingsData)
@@ -27,11 +30,14 @@ export default function GalleriesPage() {
       }
     }
     fetchData()
-    document.title = 'Work — Loukia Hadjiyianni'
   }, [])
 
+  useEffect(() => {
+    document.title = settings?.seoWorkTitle || 'Work — Loukia Hadjiyianni'
+  }, [settings])
+
   if (loading) {
-    return <div className="loading-state container">Loading...</div>
+    return <Loading />
   }
 
   const featuredPhotos = settings?.featuredPhotos || []

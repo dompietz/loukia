@@ -21,7 +21,7 @@ export default function Footer() {
         <span className="footer__brand">{name}</span>
 
         <p className="footer__copy">
-          © {year} — Fine-Art Wedding Photography
+          © {year} — {settings?.footerText || 'Fine-Art Wedding Photography'}
         </p>
 
         <nav className="footer__links" aria-label="Footer navigation">

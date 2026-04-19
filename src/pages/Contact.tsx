@@ -1,3 +1,4 @@
+import Loading from '../components/Loading'
 import { useEffect, useState, type FormEvent } from 'react'
 import { getSiteSettings } from '../lib/queries'
 import type { SiteSettings } from '../types'
@@ -11,7 +12,10 @@ export default function ContactPage() {
   useEffect(() => {
     async function fetchSettings() {
       try {
-        const data = await getSiteSettings()
+        const [data] = await Promise.all([
+          getSiteSettings(),
+          new Promise(resolve => setTimeout(resolve, 800))
+        ])
         setSettings(data)
       } catch (error) {
         console.error('Failed to fetch contact settings:', error)
@@ -20,8 +24,11 @@ export default function ContactPage() {
       }
     }
     fetchSettings()
-    document.title = 'Contact — Loukia Hadjiyianni'
   }, [])
+
+  useEffect(() => {
+    document.title = settings?.seoContactTitle || 'Contact — Loukia Hadjiyianni'
+  }, [settings])
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -30,7 +37,7 @@ export default function ContactPage() {
   }
 
   if (loading) {
-    return <div className="loading-state container">Loading...</div>
+    return <Loading />
   }
 
   return (

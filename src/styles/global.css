@@ -241,6 +241,49 @@ p {
   opacity: 0;
 }
 
+/* ─── FILM GRAIN ──────────────────────────────── */
+.film-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  animation: grain 0.2s steps(4) infinite;
+}
+
+@keyframes grain {
+  0% { background-position: 0 0; }
+  25% { background-position: 10px 10px; }
+  50% { background-position: -5px -15px; }
+  75% { background-position: -15px 5px; }
+  100% { background-position: 5px -5px; }
+}
+
+/* ─── DARKROOM MODE (Easter Egg) ──────────────── */
+body.darkroom-mode {
+  --color-canvas: #0b0b0b;
+  --color-canvas-dark: #050505;
+  --color-ink: #f52d2d; /* Brightened Safelight Red */
+  --color-ink-muted: #b02020;
+  --color-ink-faint: #7a1818;
+  --color-accent: #ff4d4d;
+  --color-border: rgba(245, 45, 45, 0.2);
+}
+
+body.darkroom-mode,
+body.darkroom-mode * {
+  transition: background-color 1s ease, color 1s ease, border-color 1s ease !important;
+}
+
+body.darkroom-mode .film-grain {
+  opacity: 0.07; /* Keep it subtle even in the dark */
+}
+
+
 /* ─────────────────────────────────────────────
    LIGHTBOX OVERRIDES
    ───────────────────────────────────────────── */

@@ -30,6 +30,7 @@ export interface SiteSettings {
   _type: 'siteSettings'
   photographerName: string
   tagline: string
+  footerText?: string
   heroImages: SanityImage[]
   galleriesLabel?: string
   galleriesHeading?: string
@@ -46,4 +47,14 @@ export interface SiteSettings {
   availability?: string
   featuredPhotos?: GalleryImage[]
   signatureImage?: SanityImage
+  /* SEO Fields */
+  seoHomeTitle?: string
+  seoWorkTitle?: string
+  seoAboutTitle?: string
+  seoContactTitle?: string
+  seoGlobalDesc?: string
+  seoHomeDesc?: string
+  seoWorkDesc?: string
+  seoAboutDesc?: string
+  seoContactDesc?: string
 }

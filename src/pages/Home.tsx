@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Loading from '../components/Loading'
 import LazyImage from '../components/LazyImage'
 import { urlFor } from '../lib/sanity'
 import { getSiteSettings, getAllGalleries } from '../lib/queries'
@@ -13,10 +14,15 @@ export default function HomePage() {
   const [galleries, setGalleries] = useState<Gallery[]>([])
   const [loading, setLoading] = useState(true)
 
+
   useEffect(() => {
     async function fetchData() {
       try {
-        const [s, g] = await Promise.all([getSiteSettings(), getAllGalleries()])
+        const [s, g] = await Promise.all([
+          getSiteSettings(), 
+          getAllGalleries(),
+          new Promise(resolve => setTimeout(resolve, 800))
+        ])
         setSettings(s)
         setGalleries(g)
       } catch (error) {
@@ -37,13 +43,14 @@ export default function HomePage() {
   }, [settings?.heroImages])
 
   useEffect(() => {
-    document.title = settings?.photographerName 
-      ? `${settings.photographerName} — Fine-Art Wedding Photography`
-      : 'Loukia Hadjiyianni — Fine-Art Wedding Photography'
+    document.title = settings?.seoHomeTitle || 
+      (settings?.photographerName 
+        ? `${settings.photographerName} — Fine-Art Wedding Photography`
+        : 'Loukia Hadjiyianni — Fine-Art Wedding Photography')
   }, [settings])
 
   if (loading) {
-    return <div className="loading-state container">Loading...</div>
+    return <Loading />
   }
   return (
     <main id="main-content">

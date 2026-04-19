@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
+import Loading from '../components/Loading'
 import LazyImage from '../components/LazyImage'
 import { getGalleryBySlug } from '../lib/queries'
 import { urlFor } from '../lib/sanity'
@@ -19,7 +20,10 @@ export default function GalleryPage() {
     async function fetchGallery() {
       if (!slug) return
       try {
-        const data = await getGalleryBySlug(slug)
+        const [data] = await Promise.all([
+          getGalleryBySlug(slug),
+          new Promise(resolve => setTimeout(resolve, 800))
+        ])
         setGallery(data)
         if (data) document.title = `${data.title} — Loukia Hadjiyianni`
       } catch (error) {
@@ -32,7 +36,7 @@ export default function GalleryPage() {
   }, [slug])
 
   if (loading) {
-    return <div className="loading-state container">Loading...</div>
+    return <Loading />
   }
 
   if (!gallery) {

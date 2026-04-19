@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Loading from '../components/Loading'
 import { getSiteSettings } from '../lib/queries'
 import { urlFor } from '../lib/sanity'
 import type { SiteSettings } from '../types'
@@ -9,10 +10,14 @@ export default function AboutPage() {
   const [loading, setLoading] = useState(true)
   const [imageLoaded, setImageLoaded] = useState(false)
 
+
   useEffect(() => {
     async function fetchData() {
       try {
-        const s = await getSiteSettings()
+        const [s] = await Promise.all([
+          getSiteSettings(),
+          new Promise(resolve => setTimeout(resolve, 800))
+        ])
         setSettings(s)
       } catch (error) {
         console.error('Failed to fetch about data:', error)
@@ -24,13 +29,14 @@ export default function AboutPage() {
   }, [])
 
   useEffect(() => {
-    document.title = settings?.photographerName 
-      ? `About — ${settings.photographerName}`
-      : 'About — Loukia Hadjiyianni'
+    document.title = settings?.seoAboutTitle || 
+      (settings?.photographerName 
+        ? `About — ${settings.photographerName}`
+        : 'About — Loukia Hadjiyianni')
   }, [settings])
 
   if (loading) {
-    return <div className="loading-state container">Loading...</div>
+    return <Loading />
   }
 
   const portraitUrl = settings?.portraitImage 
