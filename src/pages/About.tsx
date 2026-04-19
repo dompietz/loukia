@@ -39,7 +39,10 @@ export default function AboutPage() {
     return <Loading />
   }
 
-  const portraitUrl = settings?.portraitImage 
+  // Fallback if settings failed to load
+  if (!settings) return null
+
+  const portraitUrl = settings.portraitImage 
     ? urlFor(settings.portraitImage).width(1200).url() 
     : '/images/portrait.png'
 
@@ -49,10 +52,10 @@ export default function AboutPage() {
         <div className="about-split__image-col">
           <img
             src={portraitUrl}
-            srcSet={`
+            srcSet={settings.portraitImage ? `
               ${urlFor(settings.portraitImage).width(600).auto('format').url()} 600w,
               ${urlFor(settings.portraitImage).width(1200).auto('format').url()} 1200w
-            `}
+            ` : undefined}
             sizes="(max-width: 900px) 100vw, 50vw"
             alt={settings?.portraitImage?.alt || settings?.photographerName || "Portrait"}
             className={`about-split__portrait${imageLoaded ? ' loaded' : ''}`}
