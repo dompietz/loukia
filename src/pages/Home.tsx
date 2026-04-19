@@ -60,7 +60,13 @@ export default function HomePage() {
           settings.heroImages.map((img, idx) => (
             <img
               key={img._key || idx}
-              src={urlFor(img).width(2000).url()}
+              src={urlFor(img).width(2000).auto('format').url()}
+              srcSet={`
+                ${urlFor(img).width(800).auto('format').url()} 800w,
+                ${urlFor(img).width(1200).auto('format').url()} 1200w,
+                ${urlFor(img).width(2000).auto('format').url()} 2000w
+              `}
+              sizes="100vw"
               alt={img.alt || "Collection Hero"}
               className={`hero__image ${activeIndex === idx ? 'active' : ''}`}
               fetchPriority={idx === 0 ? "high" : "auto"}

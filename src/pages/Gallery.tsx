@@ -51,7 +51,7 @@ export default function GalleryPage() {
   }
 
   const slides = (gallery.images || []).map(img => ({
-    src: urlFor(img).width(2000).url(),
+    src: urlFor(img).width(2000).auto('format').url(),
     alt: img.alt || gallery.title
   }))
 

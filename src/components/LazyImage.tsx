@@ -27,11 +27,17 @@ export default function LazyImage({
 
   let placeholderUrl = ''
   let finalSrc = src || ''
+  let finalSrcSet = ''
 
   try {
     if (sanityImage && (sanityImage as any).asset) {
-      placeholderUrl = urlFor(sanityImage).width(20).blur(10).url()
-      finalSrc = urlFor(sanityImage).width(1200).url()
+      placeholderUrl = urlFor(sanityImage).width(20).blur(10).auto('format').url()
+      finalSrc = urlFor(sanityImage).width(1200).auto('format').url()
+      finalSrcSet = `
+        ${urlFor(sanityImage).width(400).auto('format').url()} 400w,
+        ${urlFor(sanityImage).width(800).auto('format').url()} 800w,
+        ${urlFor(sanityImage).width(1200).auto('format').url()} 1200w
+      `
     }
   } catch (error) {
     console.warn('Invalid Sanity Image object passed to LazyImage:', sanityImage)
@@ -53,6 +59,8 @@ export default function LazyImage({
       <img
         ref={imgRef}
         src={finalSrc}
+        srcSet={finalSrcSet}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         alt={alt}
         className={`lazy-image__main${loaded ? ' loaded' : ''}`}
         onLoad={() => setLoaded(true)}

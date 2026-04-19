@@ -49,6 +49,11 @@ export default function AboutPage() {
         <div className="about-split__image-col">
           <img
             src={portraitUrl}
+            srcSet={`
+              ${urlFor(settings.portraitImage).width(600).auto('format').url()} 600w,
+              ${urlFor(settings.portraitImage).width(1200).auto('format').url()} 1200w
+            `}
+            sizes="(max-width: 900px) 100vw, 50vw"
             alt={settings?.portraitImage?.alt || settings?.photographerName || "Portrait"}
             className={`about-split__portrait${imageLoaded ? ' loaded' : ''}`}
             onLoad={() => setImageLoaded(true)}
