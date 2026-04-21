@@ -29,7 +29,6 @@ export interface SiteSettings {
   _id: string
   _type: 'siteSettings'
   photographerName: string
-  tagline: string
   footerText?: string
   heroImages: SanityImage[]
   galleriesLabel?: string

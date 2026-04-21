@@ -63,13 +63,6 @@ export default defineType({
        HOME PAGE
        ───────────────────────────────────────────── */
     defineField({
-      name: 'tagline',
-      title: 'Tagline',
-      type: 'string',
-      group: 'home',
-      description: 'One-line descriptor shown in the homepage statement.',
-    }),
-    defineField({
       name: 'heroImages',
       title: 'Hero Images',
       type: 'array',
