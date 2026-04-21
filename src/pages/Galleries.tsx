@@ -65,6 +65,36 @@ export default function GalleriesPage() {
           </p>
         </header>
 
+        {/* New Simple Photo Grid — Now Dynamic from Sanity */}
+        {featuredPhotos.length > 0 && (
+          <section className="simple-photos-section">
+            <h2 className="section-title">{settings?.momentsGridTitle || "Moments"}</h2>
+            <div className="simple-photo-grid">
+              {featuredPhotos.map((photo, index) => {
+                // Safeguard against malformed or pending uploads from Sanity
+                if (!photo || !photo.asset) return null
+
+                return (
+                  <div key={photo._key || index} className="simple-photo-card">
+                    <div className="simple-photo-card__image-wrapper">
+                      <LazyImage
+                        sanityImage={photo}
+                        alt={photo.alt || 'Featured moment'}
+                        className="simple-photo-card__image"
+                      />
+                    </div>
+                    {photo.caption && (
+                      <div className="simple-photo-card__info">
+                        <p className="simple-photo-card__caption">{photo.caption}</p>
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </section>
+        )}
+
         {/* Existing Galleries Grid */}
         <section className="galleries-section">
           <h2 className="section-title">{settings?.galleriesGridTitle || "Galleries"}</h2>
@@ -100,36 +130,6 @@ export default function GalleriesPage() {
             )}
           </div>
         </section>
-
-        {/* New Simple Photo Grid — Now Dynamic from Sanity */}
-        {featuredPhotos.length > 0 && (
-          <section className="simple-photos-section">
-            <h2 className="section-title">{settings?.momentsGridTitle || "Moments"}</h2>
-            <div className="simple-photo-grid">
-              {featuredPhotos.map((photo, index) => {
-                // Safeguard against malformed or pending uploads from Sanity
-                if (!photo || !photo.asset) return null
-
-                return (
-                  <div key={photo._key || index} className="simple-photo-card">
-                    <div className="simple-photo-card__image-wrapper">
-                      <LazyImage
-                        sanityImage={photo}
-                        alt={photo.alt || 'Featured moment'}
-                        className="simple-photo-card__image"
-                      />
-                    </div>
-                    {photo.caption && (
-                      <div className="simple-photo-card__info">
-                        <p className="simple-photo-card__caption">{photo.caption}</p>
-                      </div>
-                    )}
-                  </div>
-                )
-              })}
-            </div>
-          </section>
-        )}
       </div>
     </main>
   )
