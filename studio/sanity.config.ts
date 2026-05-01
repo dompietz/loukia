@@ -8,7 +8,7 @@ export default defineConfig({
   title: 'Loukia Hadjiyianni — Studio',
 
   // ⚠️  Replace these with your real project values from sanity.io/manage
-  projectId: process.env.SANITY_STUDIO_PROJECT_ID || 'your-project-id',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID || 'ayyaiy0f',
   dataset: process.env.SANITY_STUDIO_DATASET || 'production',
 
   plugins: [

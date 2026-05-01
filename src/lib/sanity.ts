@@ -4,7 +4,7 @@ import type { SanityImageSource } from '@sanity/image-url'
 
 // Replace these with your actual Sanity project details after running `sanity init`
 export const sanityClient = createClient({
-  projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'your-project-id',
+  projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'ayyaiy0f',
   dataset: import.meta.env.VITE_SANITY_DATASET || 'production',
   apiVersion: '2024-01-01',
   useCdn: true,
