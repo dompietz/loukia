@@ -50,14 +50,25 @@ export interface SiteSettings {
   availability?: string
   featuredPhotos?: GalleryImage[]
   signatureImage?: SanityImage
+  /* Pricing Fields */
+  pricingHeading?: string
+  pricingText?: string
+  pricingImage?: SanityImage
+  pricingCollections?: {
+    title: string
+    description: string
+    price: string
+  }[]
   /* SEO Fields */
   seoHomeTitle?: string
   seoWorkTitle?: string
   seoAboutTitle?: string
   seoContactTitle?: string
+  seoPricingTitle?: string
   seoGlobalDesc?: string
   seoHomeDesc?: string
   seoWorkDesc?: string
   seoAboutDesc?: string
   seoContactDesc?: string
+  seoPricingDesc?: string
 }

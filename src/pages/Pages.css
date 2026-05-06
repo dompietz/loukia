@@ -67,6 +67,14 @@
   gap: var(--space-4);
 }
 
+.galleries-index__title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 1.05;
+  color: var(--color-ink);
+}
+
 .galleries-index__subtitle {
   max-width: 540px;
   font-size: 1rem;
@@ -202,6 +210,10 @@
   gap: var(--space-4);
 }
 
+.about-split__bio-text {
+  color: var(--color-ink-muted);
+}
+
 .about-split__subheading {
   font-family: var(--font-serif);
   font-size: clamp(1.2rem, 2vw, 1.8rem);
@@ -214,6 +226,7 @@
 .about-split__bio p {
   font-size: 1rem;
   line-height: 1.85;
+  color: var(--color-ink-muted);
 }
 
 .about-signature {
@@ -262,6 +275,7 @@
 .contact-page__subtitle {
   max-width: 480px;
   margin-top: var(--space-4);
+  color: var(--color-ink-muted);
 }
 
 .contact-layout {

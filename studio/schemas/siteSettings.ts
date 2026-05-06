@@ -10,6 +10,7 @@ export default defineType({
     { name: 'work', title: 'Work' },
     { name: 'about', title: 'About' },
     { name: 'contact', title: 'Contact' },
+    { name: 'pricing', title: 'Pricing' },
     { name: 'seo', title: 'SEO / Meta' },
   ],
   fields: [
@@ -221,6 +222,57 @@ export default defineType({
     }),
 
     /* ─────────────────────────────────────────────
+       PRICING PAGE
+       ───────────────────────────────────────────── */
+    defineField({
+      name: 'pricingHeading',
+      title: 'Pricing — Heading',
+      type: 'string',
+      group: 'pricing',
+      description: 'The large heading on the Pricing page.',
+      placeholder: 'Investment & Collections',
+    }),
+    defineField({
+      name: 'pricingText',
+      title: 'Pricing — Introduction',
+      type: 'text',
+      group: 'pricing',
+      rows: 4,
+      description: 'Introductory text for the pricing page.',
+    }),
+    defineField({
+      name: 'pricingImage',
+      title: 'Pricing — Featured Image',
+      type: 'image',
+      group: 'pricing',
+      description: 'The image shown on the right side of the pricing page. If left empty, it will use the About Portrait image.',
+      options: { hotspot: true },
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alt text',
+          type: 'string',
+        },
+      ],
+    }),
+    defineField({
+      name: 'pricingCollections',
+      title: 'Pricing — Collections',
+      type: 'array',
+      group: 'pricing',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'title', title: 'Title', type: 'string' },
+            { name: 'description', title: 'Description', type: 'text', rows: 3 },
+            { name: 'price', title: 'Price/Starting At', type: 'string' },
+          ],
+        },
+      ],
+    }),
+
+    /* ─────────────────────────────────────────────
        CONTACT PAGE
        ───────────────────────────────────────────── */
     defineField({
@@ -301,6 +353,20 @@ export default defineType({
     defineField({
       name: 'seoAboutDesc',
       title: 'About — Meta Description',
+      type: 'text',
+      group: 'seo',
+      rows: 3,
+    }),
+    defineField({
+      name: 'seoPricingTitle',
+      title: 'Pricing — Browser Title',
+      type: 'string',
+      group: 'seo',
+      placeholder: 'Investment & Collections — Loukia Hadjiyianni',
+    }),
+    defineField({
+      name: 'seoPricingDesc',
+      title: 'Pricing — Meta Description',
       type: 'text',
       group: 'seo',
       rows: 3,

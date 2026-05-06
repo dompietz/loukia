@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Lightbox from 'yet-another-react-lightbox'
+import 'yet-another-react-lightbox/styles.css'
 import Loading from '../components/Loading'
 import LazyImage from '../components/LazyImage'
 import { getAllGalleries, getSiteSettings } from '../lib/queries'
+import { urlFor } from '../lib/sanity'
 import type { Gallery, SiteSettings } from '../types'
 import './Pages.css'
 import '../components/Gallery.css'
@@ -11,6 +14,7 @@ export default function GalleriesPage() {
   const [galleries, setGalleries] = useState<Gallery[]>([])
   const [settings, setSettings] = useState<SiteSettings | null>(null)
   const [loading, setLoading] = useState(true)
+  const [index, setIndex] = useState(-1)
 
 
   useEffect(() => {
@@ -47,7 +51,7 @@ export default function GalleriesPage() {
       <div className="container">
         <header className="galleries-index__header">
           <p className="label">{settings?.galleriesLabel || "Selected Work"}</p>
-          <h1 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, fontSize: 'clamp(2.5rem, 5vw, 5rem)', lineHeight: 1.05 }}>
+          <h1 className="galleries-index__title">
             {settings?.galleriesHeading ? (
               settings.galleriesHeading.split('\n').map((line, i) => (
                 <span key={i}>
@@ -70,12 +74,17 @@ export default function GalleriesPage() {
           <section className="simple-photos-section">
             <h2 className="section-title">{settings?.momentsGridTitle || "Moments"}</h2>
             <div className="simple-photo-grid">
-              {featuredPhotos.map((photo, index) => {
+              {featuredPhotos.map((photo, i) => {
                 // Safeguard against malformed or pending uploads from Sanity
                 if (!photo || !photo.asset) return null
 
                 return (
-                  <div key={photo._key || index} className="simple-photo-card">
+                  <div 
+                    key={photo._key || i} 
+                    className="simple-photo-card"
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => setIndex(i)}
+                  >
                     <div className="simple-photo-card__image-wrapper">
                       <LazyImage
                         sanityImage={photo}
@@ -94,6 +103,16 @@ export default function GalleriesPage() {
             </div>
           </section>
         )}
+
+        <Lightbox
+          index={index}
+          slides={featuredPhotos.map(photo => ({
+            src: urlFor(photo).width(2000).auto('format').url(),
+            alt: photo.alt || 'Featured moment'
+          }))}
+          open={index >= 0}
+          close={() => setIndex(-1)}
+        />
 
         {/* Existing Galleries Grid */}
         <section className="galleries-section">

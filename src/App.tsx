@@ -8,6 +8,7 @@ import GalleriesPage from './pages/Galleries'
 import GalleryPage from './pages/Gallery'
 import AboutPage from './pages/About'
 import ContactPage from './pages/Contact'
+import PricingPage from './pages/Pricing'
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -32,6 +33,7 @@ function AppRoutes() {
         <Route path="/galleries" element={<GalleriesPage />} />
         <Route path="/galleries/:slug" element={<GalleryPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/pricing" element={<PricingPage />} />
         <Route path="/contact" element={<ContactPage />} />
         {/* 404 fallback */}
         <Route

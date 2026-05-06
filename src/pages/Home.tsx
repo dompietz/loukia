@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import Loading from '../components/Loading'
 import { urlFor } from '../lib/sanity'
 import { getSiteSettings } from '../lib/queries'
@@ -32,7 +33,7 @@ export default function HomePage() {
     if (!settings?.heroImages || settings.heroImages.length <= 1) return
     const timer = setInterval(() => {
       setActiveIndex(prev => (prev + 1) % settings.heroImages.length)
-    }, 4500)
+    }, 3000)
     return () => clearInterval(timer)
   }, [settings?.heroImages])
 
@@ -75,6 +76,12 @@ export default function HomePage() {
             fetchPriority="high"
           />
         )}
+
+        <div className="hero__content">
+          <Link to="/galleries" className="hero__button">
+            See work
+          </Link>
+        </div>
       </section>
     </main>
   )

@@ -78,7 +78,7 @@ export default function AboutPage() {
             <h2 className="about-split__subheading">
               {settings?.aboutHeading || 'Documenting light and emotion.'}
             </h2>
-            <div style={{ whiteSpace: 'pre-line' }}>
+            <div className="about-split__bio-text" style={{ whiteSpace: 'pre-line' }}>
               {settings?.aboutBio || (
                 <>
                   <p>I am a fine-art wedding photographer based between London and Rome...</p>

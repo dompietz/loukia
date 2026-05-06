@@ -20,11 +20,42 @@
   max-height: 70dvh;
   object-fit: contain;
   opacity: 0;
-  transition: opacity 2s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 
 .hero__image.active {
   opacity: 1;
+}
+
+.hero__content {
+  position: absolute;
+  bottom: var(--space-12);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  animation: heroFadeUp 1.2s ease-out forwards;
+  animation-delay: 0.8s;
+  opacity: 0;
+}
+
+.hero__button {
+  font-size: 0.7rem;
+  font-family: var(--font-sans);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  padding: var(--space-3) var(--space-8);
+  border: 1px solid rgba(26, 24, 20, 0.2);
+  transition: all var(--transition-base);
+  background: transparent;
+}
+
+.hero__button:hover {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-canvas);
 }
 
 /* Removed overlay and scroll hint as per minimalist aesthetic refactor */
@@ -254,7 +285,12 @@
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+  opacity: 0;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease, filter 0.6s ease;
+}
+
+.simple-photo-card__image.loaded {
+  opacity: 1;
 }
 
 .simple-photo-card:hover .simple-photo-card__image {
