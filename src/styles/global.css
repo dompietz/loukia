@@ -13,9 +13,9 @@
   --color-black:        #0d0c0b;
 
   /* Typography */
-  --font-heading: 'Crushed', cursive;
-  --font-sans:    'Crushed', cursive;
-  --font-serif:   'Crushed', cursive;
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-sans:    'Inter', sans-serif;
+  --font-serif:   'Cormorant Garamond', serif;
 
   /* Spacing */
   --space-1:  0.25rem;
@@ -126,7 +126,7 @@ p {
   font-family: var(--font-sans);
   font-size: 0.7rem;
   font-weight: 400;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-ink-faint);
 }
